@@ -17,6 +17,7 @@ $ bash ./install
 ## Tasks
 
 
+- [ ] Create script to install all applications
 - [X] Upload settings for VSCode
 - [X] Upload settings for zsh (zshrc)
 - [X] Upload settings/preferences for iTerm2
