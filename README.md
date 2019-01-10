@@ -2,7 +2,7 @@
 
 ## Installing
 
-1. Execute script `ìnstall_programs.sh`
+1. Install essential apps with `ìnstall_programs.sh` script
 ```
 $ sh ./install_programs.sh
 ```
@@ -12,9 +12,14 @@ $ sh ./install_programs.sh
 $ sh ./vscode/install-extensions.sh
 ```
 
-4.- Execute `install` script to create links with dotfiles in the OS.
+4. Execute `install` script to create links with dotfiles in the OS.
 ```
 $ sh ./install
+```
+
+5. Install theme for iTerm. using the script `install-theme.sh`
+```
+$ sh ./iterm2/install-theme.sh
 ```
 
 ## Tasks
