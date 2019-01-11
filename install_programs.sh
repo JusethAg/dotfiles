@@ -8,6 +8,8 @@ brew install git
 brew install node
 brew install zsh zsh-completions
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+brew tap caskroom/fonts
+brew cask install font-fira-code
 
 #Install icon applications
 brew cask install visual-studio-code

@@ -9,5 +9,7 @@
     "editor.tabSize": 2,
     "editor.renderWhitespace": "all",
     "gitlens.keymap": "chorded",
-    "gitlens.historyExplorer.enabled": true
+    "gitlens.historyExplorer.enabled": true,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true
 }
