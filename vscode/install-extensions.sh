@@ -20,6 +20,7 @@ if [[ $? -eq 0 ]];then
   code --install-extension pnp.polacode
   code --install-extension nodesource.vscode-for-node-js-development-pack
   code --install-extension robertohuertasm.vscode-icons
+  code --install-extension streetsidesoftware.code-spell-checker
 else
   echo "Error, command 'code' doesn't exist"
 fi
