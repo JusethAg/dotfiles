@@ -7,7 +7,8 @@ brew install wget
 brew install git
 brew install node
 brew install zsh zsh-completions
-brew install ansible 
+brew install ansible
+brew install tree
 
 # Install packages
 brew tap caskroom/fonts
@@ -18,6 +19,7 @@ brew cask install visual-studio-code
 brew cask install iterm2
 brew cask install java
 brew cask install docker
+brew cask install intellij-idea-ce
 
 # Install apps without homebrew
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
