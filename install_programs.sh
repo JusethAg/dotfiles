@@ -17,7 +17,8 @@ brew cask install font-fira-code
 # Install icon applications
 brew cask install visual-studio-code
 brew cask install iterm2
-brew cask install java
+brew tap caskroom/versions
+brew cask install java8
 brew cask install docker
 brew cask install intellij-idea-ce
 

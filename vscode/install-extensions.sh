@@ -21,6 +21,7 @@ if [[ $? -eq 0 ]];then
   code --install-extension nodesource.vscode-for-node-js-development-pack
   code --install-extension robertohuertasm.vscode-icons
   code --install-extension streetsidesoftware.code-spell-checker
+  code --install-extension samuelcolvin.jinjahtml
 else
   echo "Error, command 'code' doesn't exist"
 fi
