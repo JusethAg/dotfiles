@@ -30,4 +30,4 @@ $ sh ./iterm2/install-theme.sh
 - [X] Upload settings for zsh (zshrc)
 - [X] Upload settings/preferences for iTerm2
 - [X] Create script to download zsh-theme (lambda-mod)
-- [ ] Create script to install packages
+- [X] Create script to install packages
