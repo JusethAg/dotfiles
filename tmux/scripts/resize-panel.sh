@@ -1,4 +1,5 @@
 #!/bin/bash
+# Referefence: https://devel.tech/tips/n/tMuXrSz9/resize-tmux-main-panes-by-percentage/
 g=
 pflag=
 tflag=
