@@ -1,0 +1,57 @@
+{
+  "Touch Bar Items": [],
+  "Key Mappings": {
+    "0x6a-0x100000": {
+      "Text": "0x02 0x6a",
+      "Action": 11
+    },
+    "0x52-0x120000": {
+      "Text": "0x02 0x52",
+      "Action": 11
+    },
+    "0xd-0x120000": {
+      "Text": "0x02 0x76",
+      "Action": 11
+    },
+    "0x4b-0x120000": {
+      "Text": "0x02 0x6b",
+      "Action": 11
+    },
+    "0xd-0x100000": {
+      "Text": "0x02 0x78",
+      "Action": 11
+    },
+    "0x20-0x40000": {
+      "Text": "0x02 0x63",
+      "Action": 11
+    },
+    "0x6e-0x100000": {
+      "Text": "0x02 0x63",
+      "Action": 11
+    },
+    "0x6d-0x100000": {
+      "Text": "0x02 0x7a",
+      "Action": 11
+    },
+    "0x20-0x120000": {
+      "Text": "0x02 0x20",
+      "Action": 11
+    },
+    "0x72-0x100000": {
+      "Text": "0x02 0x72",
+      "Action": 11
+    },
+    "0x6c-0x100000": {
+      "Text": "0x02 0x4c",
+      "Action": 11
+    },
+    "0x6b-0x100000": {
+      "Text": "0x02 0x6f",
+      "Action": 11
+    },
+    "0x68-0x100000": {
+      "Text": "0x02 0x48",
+      "Action": 11
+    }
+  }
+}

@@ -31,3 +31,4 @@ $ sh ./iterm2/install-theme.sh
 - [X] Upload settings/preferences for iTerm2
 - [X] Create script to download zsh-theme (lambda-mod)
 - [X] Create script to install packages
+- [ ] Create script to load key mappings to system
