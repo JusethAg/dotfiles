@@ -17,5 +17,8 @@
     },
     "vscode_custom_css.imports": [
         "file:///Users/jusethag/RandomStuffs/synthwave84.css"
+    ],
+    "cSpell.enableFiletypes": [
+        "!plaintext"
     ]
 }

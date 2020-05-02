@@ -23,6 +23,11 @@ brew cask install docker
 brew cask install intellij-idea-ce
 brew cask install virtualbox
 brew cask install vagrant
+# sudo chown -R $(whoami) /usr/local/include
+# chmod u+w /usr/local/include
+brew install kubernetes-cli
+brew install minikube
+
 
 # Install apps without homebrew
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
