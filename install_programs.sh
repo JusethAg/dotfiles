@@ -27,6 +27,7 @@ brew cask install vagrant
 # chmod u+w /usr/local/include
 brew install kubernetes-cli
 brew install minikube
+brew install rke
 
 
 # Install apps without homebrew
