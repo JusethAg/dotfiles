@@ -28,6 +28,7 @@ brew cask install vagrant
 brew install kubernetes-cli
 brew install minikube
 brew install rke
+brew install terraform
 
 
 # Install apps without homebrew
