@@ -9,6 +9,7 @@ brew install node
 brew install zsh zsh-completions
 brew install ansible
 brew install tree
+brew install jenv
 
 # Install packages
 brew tap caskroom/fonts
@@ -19,6 +20,7 @@ brew cask install visual-studio-code
 brew cask install iterm2
 brew tap caskroom/versions
 brew cask install java8
+brew cask install java11
 brew cask install docker
 brew cask install intellij-idea-ce
 brew cask install virtualbox

@@ -105,5 +105,12 @@ function server() {
 #=====================================================================
 alias ll='ls -al'
 alias gs='git status'
+
+#=====================================================================
+#			                         CONF. FOR JENV
+#=====================================================================
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
