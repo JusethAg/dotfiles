@@ -1,7 +1,8 @@
 # Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-
+# Install services
+brew tap homebrew/services
 # Install console applications
 brew install wget
 brew install git
@@ -10,6 +11,8 @@ brew install zsh zsh-completions
 brew install ansible
 brew install tree
 brew install jenv
+brew install python@3.7
+brew install postgresql
 
 # Install packages
 brew tap caskroom/fonts
@@ -25,6 +28,7 @@ brew cask install docker
 brew cask install intellij-idea-ce
 brew cask install virtualbox
 brew cask install vagrant
+brew cask install google-cloud-sdk
 # sudo chown -R $(whoami) /usr/local/include
 # chmod u+w /usr/local/include
 brew install kubernetes-cli
