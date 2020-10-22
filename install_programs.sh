@@ -13,6 +13,7 @@ brew install tree
 brew install jenv
 brew install python@3.7
 brew install postgresql
+brew install go
 
 # Install packages
 brew tap caskroom/fonts
