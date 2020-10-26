@@ -22,6 +22,15 @@ if [[ $? -eq 0 ]];then
   code --install-extension robertohuertasm.vscode-icons
   code --install-extension streetsidesoftware.code-spell-checker
   code --install-extension samuelcolvin.jinjahtml
+  code --install-extension ms-azuretools.vscode-azurefunctions
+  code --install-extension ms-azuretools.vscode-docker
+  code --install-extension ms-vscode.azure-account
+  code --install-extension ms-vsliveshare.vsliveshare
+  code --install-extension ms-vsliveshare.vsliveshare-audio
+  code --install-extension nicolasvuillamy.vscode-groovy-lint
+  code --install-extension robbowen.synthwave-vscode
+  code --install-extension vscode-icons-team.vscode-icons
+
 else
   echo "Error, command 'code' doesn't exist"
 fi
