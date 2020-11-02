@@ -16,7 +16,7 @@ brew install postgresql
 brew install go
 
 # Install packages
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 brew cask install font-fira-code
 
 # Install icon applications
