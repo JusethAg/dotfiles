@@ -1,19 +1,22 @@
 # Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install services
+# Install taps
 brew tap homebrew/services
+brew tap hashicorp/tap
+
 # Install console applications
+brew install openssl readline sqlite3 xz zlib
 brew install wget
 brew install git
-brew install node
 brew install zsh zsh-completions
 brew install ansible
 brew install tree
 brew install jenv
-brew install python@3.7
+brew install pyenv
 brew install postgresql
 brew install go
+brew install hashicorp/tap/vault
 
 # Install packages
 brew tap homebrew/cask-fonts
@@ -36,6 +39,7 @@ brew install kubernetes-cli
 brew install minikube
 brew install rke
 brew install terraform
+brew install nvm
 
 
 # Install apps without homebrew

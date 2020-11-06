@@ -9,6 +9,7 @@
 - link:
     ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
     ~/.zshrc: zsh/zshrc
+    ~/.zprofile: zsh/zprofile
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.tmux/scripts/resize-panel.sh: tmux/scripts/resize-panel.sh
 - shell:
