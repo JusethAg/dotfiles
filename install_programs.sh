@@ -14,6 +14,7 @@ brew install ansible
 brew install tree
 brew install jenv
 brew install pyenv
+brew install pyenv-virtualenv
 brew install postgresql
 brew install go
 brew install hashicorp/tap/vault
