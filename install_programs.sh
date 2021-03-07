@@ -18,6 +18,9 @@ brew install pyenv-virtualenv
 brew install postgresql
 brew install go
 brew install hashicorp/tap/vault
+brew install graphviz
+brew install terraform
+brew install nvm
 
 # Install packages
 brew tap homebrew/cask-fonts
@@ -39,8 +42,8 @@ brew cask install google-cloud-sdk
 brew install kubernetes-cli
 brew install minikube
 brew install rke
-brew install terraform
-brew install nvm
+
+
 
 
 # Install apps without homebrew
