@@ -54,6 +54,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
+#===================================================================================
+# Fix for fixing slowness of pastes because of zsh-syntax-hightligting plugin
+#===================================================================================
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
