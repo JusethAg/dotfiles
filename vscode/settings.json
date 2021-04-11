@@ -19,5 +19,6 @@
     ],
     "cSpell.enableFiletypes": [
         "!plaintext"
-    ]
+    ],
+    "editor.renderControlCharacters": true
 }
