@@ -24,6 +24,7 @@ brew install hashicorp/tap/vault
 brew install graphviz
 brew install terraform
 brew install nvm
+brew install neofetch
 
 # Install packages
 brew tap homebrew/cask-fonts
