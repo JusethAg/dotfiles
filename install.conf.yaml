@@ -12,5 +12,6 @@
     ~/.zprofile: zsh/zprofile
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.tmux/scripts/resize-panel.sh: tmux/scripts/resize-panel.sh
+    ~/.config/nvim/init.vim: nvim/init.vim
 - shell:
     - chmod +x  ~/.tmux/scripts/resize-panel.sh

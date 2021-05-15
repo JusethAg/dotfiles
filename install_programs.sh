@@ -18,6 +18,7 @@ brew install pyenv-virtualenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+brew install neovim
 brew install postgresql
 brew install go
 brew install hashicorp/tap/vault
