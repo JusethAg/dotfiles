@@ -5,7 +5,7 @@
         "suppressShowKeyBindingsNotice": true,
         "suppressWelcomeNotice": true
     },
-    "workbench.colorTheme": "SynthWave '84",
+    "workbench.colorTheme": "Moonlight II Italic",
     "editor.renderWhitespace": "none",
     "gitlens.keymap": "chorded",
     "gitlens.historyExplorer.enabled": true,

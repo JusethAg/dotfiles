@@ -38,6 +38,14 @@ call plug#begin("~/.config/nvim/plugged")
     " GitHub: https://github.com/neoclide/coc.nvim
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " Plugin providing linting
+    " GitHub: https://github.com/dense-analysis/ale
+    Plug 'dense-analysis/ale'
+
+    " Language pack
+    " GitHub: https://github.com/sheerun/vim-polyglot
+    Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 " ============================================================
@@ -70,30 +78,30 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " Set colorscheme
 let g:lightline = {
     \ 'colorscheme': 'darcula',
-    \ }
+\ }
 
 " ========== Configs for CoC ==========
 " For adding and installing CoC extensions. 
 " Available list: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 let g:coc_global_extensions = [
-    'coc-java',
-    'coc-go',
-    'coc-clangd',
-    'coc-rls',
+    \ 'coc-java',
+    \ 'coc-go',
+    \ 'coc-clangd',
+    \ 'coc-rls',
     'coc-tsserver'
-    'coc-python',
-    'coc-sh',
-    'coc-css',
-    'coc-html',
-    'coc-json',
-    'coc-yaml',
-    'coc-xml'
-    'coc-cfn-lint',
-    'coc-git',
-    'coc-emmet',
-    'coc-eslint',
-    'coc-graphql',
-    ]
+    \ 'coc-python',
+    \ 'coc-sh',
+    \ 'coc-css',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-yaml',
+    \ 'coc-xml',
+    \ 'coc-cfn-lint',
+    \ 'coc-git',
+    \ 'coc-emmet',
+    \ 'coc-eslint',
+    \ 'coc-graphql',
+\ ]
 
 " For avoiding issues with backups (some servers fail)
 set nobackup
@@ -191,3 +199,13 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " For adding (Neo)Vim's native statusline support.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" ========== Configs for Ale ==========
+" For fixing files with ALEXFix command
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'javascript': ['eslint'],
+\}
+
+" To fix file when saving it
+let g:ale_fix_on_save = 1
