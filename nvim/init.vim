@@ -6,7 +6,9 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 " ============================================================
-"           Section for installing plugins
+" ============================================================
+"               SECTION: INSTALL PLUGINS
+" ============================================================
 " ============================================================
 call plug#begin("~/.config/nvim/plugged")
     
@@ -50,21 +52,43 @@ call plug#begin("~/.config/nvim/plugged")
     " GitHub: https://github.com/preservim/nerdcommenter
     Plug 'preservim/nerdcommenter'
 
+    " Go development plugin
+    " GitHub: https://github.com/fatih/vim-go
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+    " Lean & mean status/tabline for vim
+    " GitHub: https://github.com/vim-airline/vim-airline
+    Plug 'vim-airline/vim-airline'
+
+    " Multiple cursors plugin
+    " GitHub: https://github.com/mg979/vim-visual-multi
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+    " Plugin for integration with Delve (Go debugger)
+    " GitHub: https://github.com/sebdah/vim-delve
+    Plug 'sebdah/vim-delve'
+
 call plug#end()
 
 " ============================================================
-"           Section for adding additional configs
+" ============================================================
+"               SECTION: ADDITIONAL CONFIGS
+" ============================================================
 " ============================================================
 
 " Set theme
 colorscheme dracula
 
-" ========== Configs for nerdtree ==========
+" ============================================================
+"                   Configs for nerdtree
+" ============================================================
 " Start NERDTree with cursor on it
 autocmd VimEnter * NERDTree
 
 
-" ========== Configs for nerdtree-git-plugin ==========
+" ============================================================ 
+"               Configs for nerdtree-git-plugin
+" ============================================================
 " Change symbols
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Modified'  :'✹',
@@ -80,14 +104,18 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ }
 
 
-" ========== Configs for lightline.vim ==========
+" ============================================================
+"               Configs for lightline.vim
+" ============================================================
 " Set colorscheme
 let g:lightline = {
     \ 'colorscheme': 'darcula',
 \ }
 
 
-" ========== Configs for CoC ==========
+" ============================================================
+"                   Configs for CoC
+" ============================================================
 " For adding and installing CoC extensions. 
 " Available list: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 let g:coc_global_extensions = [
@@ -208,7 +236,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 
-" ========== Configs for Ale ==========
+" ============================================================
+"                   Configs for Ale
+" ============================================================
 " For fixing files with ALEXFix command
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -218,8 +248,15 @@ let g:ale_fixers = {
 " To fix file when saving it
 let g:ale_fix_on_save = 1
 
+" To override signs
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
 
-" ========== Configs for NerdCommenter ==========
+
+
+" ============================================================
+"               Configs for NerdCommenter
+" ============================================================
 " For commenting and inverting empty lines
 let g:NERDCommentEmptyLines = 1
 
@@ -228,3 +265,61 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " To check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
+
+" ============================================================
+"               Configs for vim-airline
+" ============================================================
+" Enable integration between Ale and vim-airline
+let g:airline#extensions#ale#enabled = 1
+
+
+" ============================================================
+"                   Configs for vim-go
+" ============================================================
+" Run autoimports with gofmt
+let g:go_fmt_command = "goimports"
+
+" Highlight same variables/methods
+let g:go_auto_sameids = 1
+
+" To highlight commont structures
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+
+" Show type info on status bar
+let g:go_auto_type_info = 1
+
+
+" ============================================================
+"           SECTION: CUSTOM CONFIGS PER LANGUAGE
+" ============================================================
+
+" ============================================================
+"               Language config: Golang
+" ============================================================
+" For setting up tabs with width of 4
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+
+" Key mapping for ga = to switch to test, gah = open horizontal split, 
+" gav = open vertical split
+au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+
+" Key mapping for running test (:GoTest) with <F10>
+au FileType go nmap <F10> :GoTest -short<cr>
+
+" Key mapping for running code coverage report with <F9>
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+
+" Key mapping for going to definition with <F12>
+au FileType go nmap <F12> <Plug>(go-def)
