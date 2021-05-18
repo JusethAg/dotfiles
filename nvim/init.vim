@@ -46,6 +46,10 @@ call plug#begin("~/.config/nvim/plugged")
     " GitHub: https://github.com/sheerun/vim-polyglot
     Plug 'sheerun/vim-polyglot'
 
+    " Code commenting plugin
+    " GitHub: https://github.com/preservim/nerdcommenter
+    Plug 'preservim/nerdcommenter'
+
 call plug#end()
 
 " ============================================================
@@ -58,6 +62,7 @@ colorscheme dracula
 " ========== Configs for nerdtree ==========
 " Start NERDTree with cursor on it
 autocmd VimEnter * NERDTree
+
 
 " ========== Configs for nerdtree-git-plugin ==========
 " Change symbols
@@ -74,11 +79,13 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Unknown'   :'?',
     \ }
 
+
 " ========== Configs for lightline.vim ==========
 " Set colorscheme
 let g:lightline = {
     \ 'colorscheme': 'darcula',
 \ }
+
 
 " ========== Configs for CoC ==========
 " For adding and installing CoC extensions. 
@@ -200,6 +207,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " For adding (Neo)Vim's native statusline support.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+
 " ========== Configs for Ale ==========
 " For fixing files with ALEXFix command
 let g:ale_fixers = {
@@ -209,3 +217,14 @@ let g:ale_fixers = {
 
 " To fix file when saving it
 let g:ale_fix_on_save = 1
+
+
+" ========== Configs for NerdCommenter ==========
+" For commenting and inverting empty lines
+let g:NERDCommentEmptyLines = 1
+
+" For trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" To check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
