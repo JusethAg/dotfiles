@@ -11,10 +11,10 @@ endif
 " ============================================================
 " ============================================================
 call plug#begin("~/.config/nvim/plugged")
-    
+
     " Vim theme
-    " GitHub: https://github.com/dracula/vim
-    Plug 'dracula/vim', { 'as': 'dracula' } 
+    " GitHub: https://github.com/shaunsingh/moonlight.nvim
+    Plug 'shaunsingh/moonlight.nvim'
 
     " File system explorer
     " GitHub: https://github.com/preservim/nerdtree
@@ -76,8 +76,16 @@ call plug#end()
 " ============================================================
 " ============================================================
 
-" Set theme
-colorscheme dracula
+" ============================================================
+"             Set theme and custom configs
+" ============================================================
+colorscheme moonlight
+
+
+" ============================================================
+"                Enable line number
+" ============================================================
+set number
 
 " ============================================================
 "                   Configs for nerdtree
@@ -86,7 +94,7 @@ colorscheme dracula
 autocmd VimEnter * NERDTree
 
 
-" ============================================================ 
+" ============================================================
 "               Configs for nerdtree-git-plugin
 " ============================================================
 " Change symbols
@@ -116,14 +124,14 @@ let g:lightline = {
 " ============================================================
 "                   Configs for CoC
 " ============================================================
-" For adding and installing CoC extensions. 
+" For adding and installing CoC extensions.
 " Available list: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 let g:coc_global_extensions = [
     \ 'coc-java',
     \ 'coc-go',
     \ 'coc-clangd',
     \ 'coc-rls',
-    'coc-tsserver'
+    \ 'coc-tsserver',
     \ 'coc-python',
     \ 'coc-sh',
     \ 'coc-css',
@@ -145,7 +153,7 @@ set nowritebackup
 " For reducing delays
 set updatetime=300
 
-" For always show the signcolumn, otherwise it would shift the 
+" For always show the signcolumn, otherwise it would shift the
 " text each time diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
   set signcolumn=number
@@ -172,7 +180,7 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" For making <CR> auto-select the first completion item and notify 
+" For making <CR> auto-select the first completion item and notify
 " coc.nvim to format on enter
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -263,7 +271,7 @@ let g:NERDCommentEmptyLines = 1
 " For trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" To check all selected lines is commented or not 
+" To check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 " ============================================================
@@ -297,7 +305,9 @@ let g:go_auto_type_info = 1
 
 
 " ============================================================
+" ============================================================
 "           SECTION: CUSTOM CONFIGS PER LANGUAGE
+" ============================================================
 " ============================================================
 
 " ============================================================
@@ -309,7 +319,7 @@ au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
-" Key mapping for ga = to switch to test, gah = open horizontal split, 
+" Key mapping for ga = to switch to test, gah = open horizontal split,
 " gav = open vertical split
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
