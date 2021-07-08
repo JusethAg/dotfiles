@@ -1,9 +1,10 @@
 # Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install taps
+# Add additional repos
 brew tap homebrew/services
 brew tap hashicorp/tap
+brew tap aws/tap
 
 # Install console applications
 brew install openssl readline sqlite3 xz zlib
@@ -26,6 +27,7 @@ brew install graphviz
 brew install terraform
 brew install nvm
 brew install neofetch
+brew install aws-sam-cli
 
 # Install packages
 brew tap homebrew/cask-fonts
@@ -47,7 +49,6 @@ brew cask install google-cloud-sdk
 brew install kubernetes-cli
 brew install minikube
 brew install rke
-
 
 
 
