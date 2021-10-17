@@ -85,12 +85,30 @@ colorscheme moonlight
 " Enable line number
 set number
 
+" Avoid disable Vim-specific features
+set nocompatible
+
+" To avoid save prompt when moving between buffers
+set hidden
+
+" Too obvious but for setting encoding
+set encoding=utf-8
+
 " ============================================================
-"                   Configs for nerdtree
+"                   Configs for NERDtree
 " ============================================================
+" Objects (files, folders) to ignore
+let g:NERDTreeIgnore = ['node_modules']
+let g:NERDTreeShowHidden = 1
+
 " Start NERDTree with cursor on it
 autocmd VimEnter * NERDTree
 
+" Automatically close Neovim if NERDTree is the only thing open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Toggle NERDTree window with Ctrl-A
+nnoremap <silent> <C-a> :NERDTreeToggle<CR>
 
 " ============================================================
 "               Configs for nerdtree-git-plugin
