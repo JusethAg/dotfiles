@@ -13,6 +13,8 @@ brew install git
 brew install zsh zsh-completions
 brew install ansible
 brew install tree
+brew install fzf
+brew install ripgrep
 brew install jenv
 brew install pyenv
 brew install pyenv-virtualenv
