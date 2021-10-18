@@ -136,3 +136,12 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 #====================================================================
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
+
+
+#=====================================================================
+#                   FZF & RIPGREP CONFIGURATION
+#=====================================================================
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m' #To allow multiple selections with <Tab>
+fi
