@@ -33,19 +33,20 @@ brew install aws-sam-cli
 
 # Install packages
 brew tap homebrew/cask-fonts
-brew cask install font-fira-code
+brew install --cask font-fira-code
 
 # Install icon applications
-brew cask install visual-studio-code
-brew cask install iterm2
+brew install --cask visual-studio-code
+brew install --cask iterm2
 brew tap caskroom/versions
-brew cask install java8
-brew cask install java11
-brew cask install docker
-brew cask install intellij-idea-ce
-brew cask install virtualbox
-brew cask install vagrant
-brew cask install google-cloud-sdk
+brew install --cask java8
+brew install --cask java11
+brew install --cask docker
+brew install --cask intellij-idea-ce
+brew install --cask virtualbox
+brew install --cask vagrant
+brew install --cask google-cloud-sdk
+brew install --cask confluent-cli
 # sudo chown -R $(whoami) /usr/local/include
 # chmod u+w /usr/local/include
 brew install kubernetes-cli
