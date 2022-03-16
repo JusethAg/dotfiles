@@ -69,7 +69,10 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'sebdah/vim-delve'
 
     " Command-line fuzzy finder plugin
+    "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 
 call plug#end()
 
