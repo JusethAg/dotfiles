@@ -16,6 +16,7 @@ brew install tree
 brew install fzf
 brew install ripgrep
 brew install jenv
+brew install webp
 brew install pyenv
 brew install pyenv-virtualenv
 eval "$(pyenv init -)"
