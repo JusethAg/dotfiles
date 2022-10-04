@@ -69,9 +69,11 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'sebdah/vim-delve'
 
     " Command-line fuzzy finder plugin
-    "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+    " Markdown previewer plugin
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 
 call plug#end()
@@ -324,6 +326,14 @@ let g:go_highlight_methods = 1
 
 " Show type info on status bar
 let g:go_auto_type_info = 1
+
+
+
+" ============================================================
+"                   Configs for markdown-preview
+" ============================================================
+" To avoid closing the preview when switching to other buffers
+let g:mkdp_auto_close = 1
 
 
 " ============================================================
