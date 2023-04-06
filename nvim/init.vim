@@ -68,9 +68,14 @@ call plug#begin("~/.config/nvim/plugged")
     " GitHub: https://github.com/sebdah/vim-delve
     Plug 'sebdah/vim-delve'
 
-    " Command-line fuzzy finder plugin
-    Plug 'junegunn/fzf.vim'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    " Fuzzy finder over list plugin
+    " GitHub: https://github.com/nvimtelescope/telescope.nvim
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+
+    " Native telescope sorter
+    " GitHub: https://github.com/nvim-telescope/telescope-fzf-native.nvim
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
     " Markdown previewer plugin
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -328,12 +333,16 @@ let g:go_highlight_methods = 1
 let g:go_auto_type_info = 1
 
 
+" ============================================================
+"                   Configs for Telescope
+" ============================================================
+nnoremap <silent> <C-p> <cmd>lua require('telescope.builtin').find_files()<cr>
 
 " ============================================================
 "                   Configs for markdown-preview
 " ============================================================
 " To avoid closing the preview when switching to other buffers
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close = 0
 
 
 " ============================================================

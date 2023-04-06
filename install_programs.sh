@@ -48,6 +48,7 @@ brew install --cask virtualbox
 brew install --cask vagrant
 brew install --cask google-cloud-sdk
 brew install --cask confluent-cli
+brew install --cask raycast
 # sudo chown -R $(whoami) /usr/local/include
 # chmod u+w /usr/local/include
 brew install kubernetes-cli
