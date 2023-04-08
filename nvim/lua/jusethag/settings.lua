@@ -20,4 +20,5 @@ vim.opt.ignorecase = true
 -- Set case sensitive searching when not all lowercase
 vim.opt.smartcase = true
 
+-- Show sign column
 vim.opt.signcolumn = 'yes'
