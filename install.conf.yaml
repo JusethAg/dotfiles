@@ -3,6 +3,7 @@
         create: true
         relink: true
         force: true
+        opts: -r
 
 - clean: ['~']
 
@@ -12,6 +13,6 @@
     ~/.zprofile: zsh/zprofile
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.tmux/scripts/resize-panel.sh: tmux/scripts/resize-panel.sh
-    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim: nvim
 - shell:
     - chmod +x  ~/.tmux/scripts/resize-panel.sh
