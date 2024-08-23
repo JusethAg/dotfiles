@@ -54,7 +54,8 @@ brew install --cask raycast
 brew install kubernetes-cli
 brew install minikube
 brew install rke
-
+brew install telegraf
+brew install influxdb-cli
 
 
 # Install apps without homebrew

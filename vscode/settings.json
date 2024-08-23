@@ -20,5 +20,6 @@
     "cSpell.enableFiletypes": [
         "!plaintext"
     ],
-    "editor.renderControlCharacters": true
+    "editor.renderControlCharacters": true,
+    "vsicons.dontShowNewVersionMessage": true
 }
