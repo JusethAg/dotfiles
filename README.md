@@ -2,6 +2,11 @@
 
 ## Installing
 
+1. Execute `install` script to create links with dotfiles in the OS.
+```
+$ sh ./install
+```
+
 1. Install essential apps with `ìnstall_programs.sh` script
 ```
 $ sh ./install_programs.sh
@@ -10,11 +15,6 @@ $ sh ./install_programs.sh
 3. Install VSCode extensions with `install-extensions.sh` script.
 ```
 $ sh ./vscode/install-extensions.sh
-```
-
-4. Execute `install` script to create links with dotfiles in the OS.
-```
-$ sh ./install
 ```
 
 5. Install theme for iTerm. using the script `install-theme.sh`
