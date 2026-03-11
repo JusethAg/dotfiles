@@ -67,21 +67,21 @@ install_brew() {
 create_symlinks() {
     echo "Removing existing dotfiles..."
 
-    rm -rf ~/Library/Application Support/Code/User/settings.json ~/.zshrc ~/.tmux.conf ~/.tmux/scripts/resize-panel.sh ~/.config/nvim 2>/dev/null
+    rm -rf ~/Library/Application\ Support/Code/User/settings.json ~/.zshrc ~/.tmux.conf ~/.tmux/scripts/resize-panel.sh ~/.config/nvim 2>/dev/null
 
     echo "Creating folders..."
 
     mkdir -p ~/.tmux ~/.tmux/scripts ~/.config
 
     echo "Creating symlinks..."
-    ln -s "$(pwd)/vscode/settings.json" ~/Library/Application Support/Code/User/settings.json
+    ln -s "$(pwd)/vscode/settings.json" ~/Library/Application\ Support/Code/User/settings.json
     ln -s "$(pwd)/zsh/zshrc" ~/.zshrc
     ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf
-    ln -s "$(pwd)/scripts/resize-panel.sh" ~/.tmux/scripts/resize-panel.sh
+    ln -s "$(pwd)/tmux/scripts/resize-panel.sh" ~/.tmux/scripts/resize-panel.sh
     ln -s "$(pwd)/nvim" ~/.config/nvim
 
 
-    chmod +x "~/.tmux/scripts/resize-panel.sh"
+    chmod +x ~/.tmux/scripts/resize-panel.sh
 }
 
 # Print completion message
