@@ -95,6 +95,8 @@ print_completion() {
 
 # Install common packages via Homebrew
 install_brew_packages() {
+    echo "Installing Brew packages..."
+
     brew update
 
     brew install openssl readline sqlite3 xz zlib
@@ -119,11 +121,13 @@ install_brew_packages() {
     brew install tmux
     brew install gh
 
+    echo "Brew packages have been installed!"
+
 }
 
 # Install MacOS packages via Homebrew cask
 install_brew_cask_packages() {
-    echo "Installing MacOS applications via Homebrew..."
+    echo "Installing Brew Cask packages..."
 
     brew install --cask visual-studio-code
     brew install --cask iterm2
@@ -133,6 +137,16 @@ install_brew_cask_packages() {
     brew install --cask logi-options+
 
     echo "Cask applications have been installed!"
+}
+
+# Install packages not supported by Homebrew
+install_non_brew_packages() {
+    echo "Installing packages not supported by Homebrew..."
+
+    # Install Oh My Zsh!
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    echo "Packages not supported by Homebrew have been installed!"
 }
 
 # Install fonts via Homebrew
@@ -187,6 +201,8 @@ setup_local_env() {
     install_brew_packages
 
     install_brew_cask_packages
+
+    install_non_brew_packages
 
     install_macos_fonts
 
