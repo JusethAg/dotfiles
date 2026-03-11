@@ -55,8 +55,6 @@ alias gs='git status'
 #			                    Exports
 # ==============================================================
 
-
-
 # Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -84,3 +82,6 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m' # To allow multiple selections with <Tab>
 fi
+
+# Configure Brew in shell
+eval "$(brew shellenv)"
