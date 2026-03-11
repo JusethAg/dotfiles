@@ -12,11 +12,11 @@ CURRENT_STEP=0
 
 begin_step() {
     CURRENT_STEP=$((CURRENT_STEP + 1))
-    printf "\r\033[K  [ %2d/%-2d ] %s..." "$CURRENT_STEP" "$TOTAL_STEPS" "$1"
+    printf "  [ %2d/%-2d ] %s...\n" "$CURRENT_STEP" "$TOTAL_STEPS" "$1"
 }
 
 end_step() {
-    printf "\r\033[K  [ %2d/%-2d ] %s  ✓\n" "$CURRENT_STEP" "$TOTAL_STEPS" "$1"
+    printf "  [ %2d/%-2d ] %s  ✓\n" "$CURRENT_STEP" "$TOTAL_STEPS" "$1"
 }
 
 trap 'printf "\n\033[31m  Error at step %d. Check %s for details.\033[0m\n" "$CURRENT_STEP" "$LOG_FILE"' ERR
@@ -42,6 +42,7 @@ suppress_login_message() {
 # Prompt for Git user details
 prompt_git_config() {
     begin_step "Git configuration"
+
     printf "\n"
 
     read -p "  Enter your full name: " git_name
@@ -89,7 +90,7 @@ create_symlinks() {
 
     ln -s "$(pwd)/vscode/settings.json" ~/Library/Application\ Support/Code/User/settings.json
     ln -s "$(pwd)/zsh/zshrc" ~/.zshrc
-    n -s "$(pwd)/zsh/p10k.zsh" ~/.p10k.zsh
+    ln -s "$(pwd)/zsh/p10k.zsh" ~/.p10k.zsh
     ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf
     ln -s "$(pwd)/tmux/scripts/resize-panel.sh" ~/.tmux/scripts/resize-panel.sh
     ln -s "$(pwd)/nvim" ~/.config/nvim
@@ -166,9 +167,9 @@ install_brew_cask_packages() {
 install_non_brew_packages() {
     begin_step "Install non-Brew packages"
     
-    rm -rf ~/.oh-my-zsh >> "$LOG_FILE" 2>&1
-    
-    RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >> "$LOG_FILE" 2>&1
+    rm -rf ~/.oh-my-zsh ~/.zshrc >> "$LOG_FILE" 2>&1
+
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >> "$LOG_FILE" 2>&1
 
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" >> "$LOG_FILE" 2>&1
 
@@ -185,6 +186,7 @@ install_macos_fonts() {
 # Set computer name & hostname
 set_hostname() {
     begin_step "Set hostname"
+
     printf "\n"
 
     echo "  Current computer name: $(scutil --get ComputerName 2>/dev/null || echo 'Not set yet.')"
@@ -229,7 +231,8 @@ setup_local_env() {
     print_completion
 }
 
-# Ask for admin pass
+# Ask for admin pass and keep the session alive
 sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 setup_local_env
