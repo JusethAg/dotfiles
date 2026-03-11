@@ -1,218 +1,226 @@
 #!/usr/bin/env bash
 
 set -e
+
+LOG_FILE="/tmp/dotfiles-install.log"
+TOTAL_STEPS=11
+CURRENT_STEP=0
+
 # ==============================================================
 #                       Helper functions
 # ==============================================================
 
-# Suppress login message
-suppress_login_message() {
-    echo "Suppressing login message..."
-
-    touch ~/.hushlogin
-
-    echo "Login message suppressed."
+begin_step() {
+    CURRENT_STEP=$((CURRENT_STEP + 1))
+    printf "\r\033[K  [ %2d/%-2d ] %s..." "$CURRENT_STEP" "$TOTAL_STEPS" "$1"
 }
+
+end_step() {
+    printf "\r\033[K  [ %2d/%-2d ] %s  ✓\n" "$CURRENT_STEP" "$TOTAL_STEPS" "$1"
+}
+
+trap 'printf "\n\033[31m  Error at step %d. Check %s for details.\033[0m\n" "$CURRENT_STEP" "$LOG_FILE"' ERR
 
 check_command() {
     local cmd="$1"
     command -v "$cmd" &>/dev/null
 }
 
+# ==============================================================
+#                       Step functions
+# ==============================================================
+
+# Suppress login message
+suppress_login_message() {
+    begin_step "Suppress login message"
+    touch ~/.hushlogin >> "$LOG_FILE" 2>&1
+    end_step "Suppress login message"
+}
+
+
+
 # Prompt for Git user details
 prompt_git_config() {
-    echo "Enter your information for Git configuration."
+    begin_step "Git configuration"
+    printf "\n"
 
-    read -p "Enter your full name: " git_name
-    read -p "Enter your email: " git_email
+    read -p "  Enter your full name: " git_name
+    read -p "  Enter your email: " git_email
 
     export GIT_CONFIG_NAME="$git_name"
     export GIT_CONFIG_EMAIL="$git_email"
+
+    printf "\n"
+    end_step "Git configuration"
 }
 
 # Apply Git configuration
 apply_git_config() {
-    if [[ -n "GIT_CONFIG_NAME" && -n "GIT_CONFIG_EMAIL" ]]; then
-        echo "Applying Git configuration..."
-        
-        git config --global user.name "$GIT_CONFIG_NAME"
-        git config --global user.email "$GIT_CONFIG_EMAIL"
-
-        echo "Git user name and email have been set."
+    begin_step "Apply Git configuration"
+    if [[ -n "$GIT_CONFIG_NAME" && -n "$GIT_CONFIG_EMAIL" ]]; then
+        git config --global user.name "$GIT_CONFIG_NAME" >> "$LOG_FILE" 2>&1
+        git config --global user.email "$GIT_CONFIG_EMAIL" >> "$LOG_FILE" 2>&1
     else
-        echo "Git user details not provided, skipping Git configuration."
+        printf "\n\033[33m  Git user details not provided, skipping.\033[0m\n" >> "$LOG_FILE" 2>&1
     fi
+    end_step "Apply Git configuration"
 }
 
-# Install Homebrew
+# Install Homebrew
 install_brew() {
+    begin_step "Install Homebrew"
     if check_command brew; then
-        echo "Homebrew is already installed."
+        : # already installed
     else
-        echo "Installing Homebrew..."
-        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" >> "$LOG_FILE" 2>&1
     fi
 
-    echo "Setting up Homebrew environment..."
-
-    # Source brew for current session
     eval "$(/opt/homebrew/bin/brew shellenv)"
-
-    # Add to shell configuration
     grep -q "brew shellenv" ~/.zshrc 2>/dev/null || echo 'eval "$(brew shellenv)"' >>~/.zshrc
+    end_step "Install Homebrew"
 }
 
 # Create symlinks for dotfiles
 create_symlinks() {
-    echo "Removing existing dotfiles..."
+    begin_step "Create symlinks"
 
-    rm -rf ~/Library/Application\ Support/Code/User/settings.json ~/.zshrc ~/.tmux.conf ~/.tmux/scripts/resize-panel.sh ~/.config/nvim 2>/dev/null
+    rm -rf ~/Library/Application\ Support/Code/User/settings.json ~/.zshrc ~/.tmux.conf ~/.tmux/scripts/resize-panel.sh ~/.config/nvim >> "$LOG_FILE" 2>&1
+    mkdir -p ~/.tmux ~/.tmux/scripts ~/.config >> "$LOG_FILE" 2>&1
 
-    echo "Creating folders..."
-
-    mkdir -p ~/.tmux ~/.tmux/scripts ~/.config
-
-    echo "Creating symlinks..."
     ln -s "$(pwd)/vscode/settings.json" ~/Library/Application\ Support/Code/User/settings.json
     ln -s "$(pwd)/zsh/zshrc" ~/.zshrc
     ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf
     ln -s "$(pwd)/tmux/scripts/resize-panel.sh" ~/.tmux/scripts/resize-panel.sh
     ln -s "$(pwd)/nvim" ~/.config/nvim
 
-
     chmod +x ~/.tmux/scripts/resize-panel.sh
+
+    end_step "Create symlinks"
 }
 
 # Print completion message
 print_completion() {
-    # TODO: Add a nice image
-    echo "Your local environment is ready to use!"
+    printf "\n"
+    printf "  ____        _    __ _ _           \n"
+    printf " |  _ \  ___ | |_ / _(_) | ___  ___ \n"
+    printf " | | | |/ _ \| __| |_| | |/ _ \/ __|\n"
+    printf " | |_| | (_) | |_|  _| | |  __/\__ \\ \n"
+    printf " |____/ \___/ \__|_| |_|_|\___||___/ \n"
+    printf "\n"
+    printf " Your local environment is ready to use!\n"
+    printf " Full log: %s\n\n" "$LOG_FILE"
 }
+
 # ==============================================================
 #                       MacOS configs
 # ==============================================================
 
 # Install common packages via Homebrew
 install_brew_packages() {
-    echo "Installing Brew packages..."
+    begin_step "Install Brew packages"
 
-    brew update
+    brew update >> "$LOG_FILE" 2>&1
+    brew install \
+        openssl readline sqlite3 xz zlib \
+        wget \
+        zsh-completions \
+        zsh-autosuggestions \
+        zsh-syntax-highlighting \
+        tree \
+        fzf \
+        ripgrep \
+        webp \
+        uv \
+        neovim \
+        go \
+        graphviz \
+        terraform \
+        nvm \
+        neofetch \
+        kubernetes-cli \
+        minikube \
+        awscli \
+        tmux \
+        gh >> "$LOG_FILE" 2>&1
 
-    brew install openssl readline sqlite3 xz zlib
-    brew install wget
-    brew install zsh-completions
-    brew install zsh-autosuggestions
-    brew install zsh-syntax-highlighting
-    brew install tree
-    brew install fzf
-    brew install ripgrep
-    brew install webp
-    brew install uv
-    brew install neovim
-    brew install go
-    brew install graphviz
-    brew install terraform
-    brew install nvm
-    brew install neofetch
-    brew install kubernetes-cli
-    brew install minikube
-    brew install awscli
-    brew install tmux
-    brew install gh
-
-    echo "Brew packages have been installed!"
-
+    end_step "Install Brew packages"
 }
 
 # Install MacOS packages via Homebrew cask
 install_brew_cask_packages() {
-    echo "Installing Brew Cask packages..."
+    begin_step "Install Brew Cask packages"
 
-    brew install --cask visual-studio-code
-    brew install --cask iterm2
-    brew install --cask claude-code
-    brew install --cask docker
-    brew install --cask jetbrains-toolbox
-    brew install --cask logi-options+
+    brew install --cask \
+        visual-studio-code \
+        iterm2 \
+        claude-code \
+        docker \
+        jetbrains-toolbox \
+        "logi-options+" >> "$LOG_FILE" 2>&1
 
-    echo "Cask applications have been installed!"
+    end_step "Install Brew Cask packages"
 }
 
 # Install packages not supported by Homebrew
 install_non_brew_packages() {
-    echo "Installing packages not supported by Homebrew..."
+    begin_step "Install non-Brew packages"
 
-    # Install Oh My Zsh!
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >> "$LOG_FILE" 2>&1
 
-    # Install Powerlevel10k zsh theme
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" 
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" >> "$LOG_FILE" 2>&1
 
-    echo "Packages not supported by Homebrew have been installed!"
+    end_step "Install non-Brew packages"
 }
 
 # Install fonts via Homebrew
 install_macos_fonts() {
-    echo "Installing fonts..."
-
-    brew install --cask font-fira-code
-
-    echo "MacOS fonts have been installed!"
+    begin_step "Install macOS fonts"
+    brew install --cask font-fira-code >> "$LOG_FILE" 2>&1
+    end_step "Install macOS fonts"
 }
 
 # Set computer name & hostname
 set_hostname() {
-    echo "Current computer name: $(scutil --get ComputerName 2>/dev/null || echo 'Not set yet.')"
-    echo "Current hostname: $(scutil --get HostName 2>/dev/null || echo 'Not set yet.')"
-    echo "Current local hostname: $(scutil --get LocalHostName 2>/dev/null || echo 'Not set yet.')"
+    begin_step "Set hostname"
+    printf "\n"
 
-    read -p "Enter new computer name (or press Enter to keep current): " new_name
+    echo "  Current computer name: $(scutil --get ComputerName 2>/dev/null || echo 'Not set yet.')"
+    echo "  Current hostname: $(scutil --get HostName 2>/dev/null || echo 'Not set yet.')"
+    echo "  Current local hostname: $(scutil --get LocalHostName 2>/dev/null || echo 'Not set yet.')"
+
+    read -p "  Enter new computer name (or press Enter to keep current): " new_name
 
     if [[ -n "$new_name" ]]; then
         sudo scutil --set ComputerName "$new_name"
         sudo scutil --set HostName "$new_name"
         sudo scutil --set LocalHostName "$new_name"
         sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$new_name"
-        
-        echo "Computer name set to: $new_name :)"
-    else
-        echo "No changes applied. Keeping current computer name."
     fi
+
+    printf "\n"
+    end_step "Set hostname"
 }
 
 update_macos_defaults() {
-    echo "Updating macOS system defaults..."
-
-    # Show Path Bar in Finder
-    defaults write com.apple.finder ShowPathbar -bool true;
-
-    echo "macOS defaults updated. You may need to restart your computer for some changes to take effect!"
+    begin_step "Update macOS defaults"
+    defaults write com.apple.finder ShowPathbar -bool true >> "$LOG_FILE" 2>&1
+    end_step "Update macOS defaults"
 }
 
 setup_local_env() {
-    echo -e "Setting up dotfiles...\\n"
+    > "$LOG_FILE"
+    printf "Setting up dotfiles...\n\n"
 
     suppress_login_message
-
     set_hostname
-
     update_macos_defaults
-
     install_brew
-
     install_brew_packages
-
     install_brew_cask_packages
-
     install_non_brew_packages
-
     install_macos_fonts
-
     prompt_git_config
-
     apply_git_config
-
     create_symlinks
 
     print_completion
