@@ -146,6 +146,9 @@ install_non_brew_packages() {
     # Install Oh My Zsh!
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+    # Install Powerlevel10k zsh theme
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" 
+
     echo "Packages not supported by Homebrew have been installed!"
 }
 
