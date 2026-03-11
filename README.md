@@ -1,34 +1,28 @@
 # Dotfiles
 
-## Installing
+## Installation
 
-1. Execute `install` script to create links with dotfiles in the OS.
+1. Install Xcode Command Line Tools
 ```
-$ sh ./install
+xcode-select --install
 ```
 
-1. Install essential apps with `ìnstall_programs.sh` script
+2. Clone the repo
 ```
-$ sh ./install_programs.sh
+git clone https://github.com/JusethAg/dotfiles
+```
+
+3. Execute the main installation script
+```
+$ bash ./install.sh
 ```
 
 3. Install VSCode extensions with `install-extensions.sh` script.
 ```
-$ sh ./vscode/install-extensions.sh
+$ bash ./vscode/install-extensions.sh
 ```
 
 5. Install theme for iTerm. using the script `install-theme.sh`
 ```
 $ sh ./iterm2/install-theme.sh
 ```
-
-## Tasks
-
-
-- [X] Create script to install all applications
-- [X] Upload settings for VSCode
-- [X] Upload settings for zsh (zshrc)
-- [X] Upload settings/preferences for iTerm2
-- [X] Create script to download zsh-theme (lambda-mod)
-- [X] Create script to install packages
-- [ ] Create script to load key mappings to system
