@@ -167,8 +167,8 @@ set_hostname() {
 update_macos_defaults() {
     echo "Updating macOS system defaults..."
 
-    # Disable all Hot Corners
-    disable_dock_hot_corners
+    # Show Path Bar in Finder
+    defaults write com.apple.finder ShowPathbar -bool true;
 
     echo "macOS defaults updated. You may need to restart your computer for some changes to take effect!"
 }
