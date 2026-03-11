@@ -32,7 +32,7 @@ prompt_git_config() {
 
 # Apply Git configuration
 apply_git_config() {
-    if [[ -n "GIT_CONFIG_NAME" && -N "GIT_CONFIG_EMAIL" ]]; then
+    if [[ -n "GIT_CONFIG_NAME" && -n "GIT_CONFIG_EMAIL" ]]; then
         echo "Applying Git configuration..."
         
         git config --global user.name "$GIT_CONFIG_NAME"

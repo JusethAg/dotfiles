@@ -24,5 +24,5 @@ $ bash ./vscode/install-extensions.sh
 
 5. Install theme for iTerm. using the script `install-theme.sh`
 ```
-$ sh ./iterm2/install-theme.sh
+$ bash ./iterm2/install-theme.sh
 ```
