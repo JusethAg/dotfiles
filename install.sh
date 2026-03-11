@@ -84,11 +84,12 @@ install_brew() {
 create_symlinks() {
     begin_step "Create symlinks"
 
-    rm -rf ~/Library/Application\ Support/Code/User/settings.json ~/.zshrc ~/.tmux.conf ~/.tmux/scripts/resize-panel.sh ~/.config/nvim >> "$LOG_FILE" 2>&1
+    rm -rf ~/Library/Application\ Support/Code/User/settings.json ~/.zshrc ~/.p10k.zsh ~/.tmux.conf ~/.tmux/scripts/resize-panel.sh ~/.config/nvim >> "$LOG_FILE" 2>&1
     mkdir -p ~/.tmux ~/.tmux/scripts ~/.config >> "$LOG_FILE" 2>&1
 
     ln -s "$(pwd)/vscode/settings.json" ~/Library/Application\ Support/Code/User/settings.json
     ln -s "$(pwd)/zsh/zshrc" ~/.zshrc
+    n -s "$(pwd)/zsh/p10k.zsh" ~/.p10k.zsh
     ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf
     ln -s "$(pwd)/tmux/scripts/resize-panel.sh" ~/.tmux/scripts/resize-panel.sh
     ln -s "$(pwd)/nvim" ~/.config/nvim
@@ -164,7 +165,9 @@ install_brew_cask_packages() {
 # Install packages not supported by Homebrew
 install_non_brew_packages() {
     begin_step "Install non-Brew packages"
-
+    
+    rm -rf ~/.oh-my-zsh >> "$LOG_FILE" 2>&1
+    
     RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" >> "$LOG_FILE" 2>&1
 
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" >> "$LOG_FILE" 2>&1
