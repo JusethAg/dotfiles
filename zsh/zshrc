@@ -73,9 +73,8 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 #	                    Tool configurations
 # ==============================================================
 
-# Nvm
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # fzf & ripgrep
 if type rg &> /dev/null; then
