@@ -14,15 +14,7 @@ git clone https://github.com/JusethAg/dotfiles
 
 3. Execute the main installation script
 ```
-$ bash ./install.sh
+bash install.sh
 ```
 
-3. Install VSCode extensions with `install-extensions.sh` script.
-```
-$ bash ./vscode/install-extensions.sh
-```
-
-5. Install theme for iTerm. using the script `install-theme.sh`
-```
-$ bash ./iterm2/install-theme.sh
-```
+The script will install all packages, VSCode extensions, fonts, and symlinks in a single run.

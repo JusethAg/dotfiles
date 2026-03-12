@@ -3,7 +3,7 @@
 set -e
 
 LOG_FILE="/tmp/dotfiles-install.log"
-TOTAL_STEPS=11
+TOTAL_STEPS=12
 CURRENT_STEP=0
 
 # ==============================================================
@@ -163,6 +163,40 @@ install_brew_cask_packages() {
     end_step "Install Brew Cask packages"
 }
 
+# Install VSCode extensions
+install_vscode_extensions() {
+    begin_step "Install VSCode extensions"
+    code --install-extension aeschli.vscode-css-formatter >> "$LOG_FILE" 2>&1
+    code --install-extension christian-kohler.npm-intellisense >> "$LOG_FILE" 2>&1
+    code --install-extension dbaeumer.vscode-eslint >> "$LOG_FILE" 2>&1
+    code --install-extension donjayamanne.githistory >> "$LOG_FILE" 2>&1
+    code --install-extension dracula-theme.theme-dracula >> "$LOG_FILE" 2>&1
+    code --install-extension eamodio.gitlens >> "$LOG_FILE" 2>&1
+    code --install-extension golang.go >> "$LOG_FILE" 2>&1
+    code --install-extension hashicorp.terraform >> "$LOG_FILE" 2>&1
+    code --install-extension ivory-lab.jenkinsfile-support >> "$LOG_FILE" 2>&1
+    code --install-extension kisstkondoros.vscode-codemetrics >> "$LOG_FILE" 2>&1
+    code --install-extension ms-azuretools.vscode-azurefunctions >> "$LOG_FILE" 2>&1
+    code --install-extension ms-azuretools.vscode-azureresourcegroups >> "$LOG_FILE" 2>&1
+    code --install-extension ms-azuretools.vscode-docker >> "$LOG_FILE" 2>&1
+    code --install-extension ms-vscode.azure-account >> "$LOG_FILE" 2>&1
+    code --install-extension ms-vsliveshare.vsliveshare >> "$LOG_FILE" 2>&1
+    code --install-extension ms-vsliveshare.vsliveshare-audio >> "$LOG_FILE" 2>&1
+    code --install-extension msjsdiag.debugger-for-chrome >> "$LOG_FILE" 2>&1
+    code --install-extension NicolasVuillamy.vscode-groovy-lint >> "$LOG_FILE" 2>&1
+    code --install-extension nodesource.vscode-for-node-js-development-pack >> "$LOG_FILE" 2>&1
+    code --install-extension nopjmp.fairyfloss >> "$LOG_FILE" 2>&1
+    code --install-extension pnp.polacode >> "$LOG_FILE" 2>&1
+    code --install-extension RobbOwen.synthwave-vscode >> "$LOG_FILE" 2>&1
+    code --install-extension samuelcolvin.jinjahtml >> "$LOG_FILE" 2>&1
+    code --install-extension streetsidesoftware.code-spell-checker >> "$LOG_FILE" 2>&1
+    code --install-extension techer.open-in-browser >> "$LOG_FILE" 2>&1
+    code --install-extension vscode-icons-team.vscode-icons >> "$LOG_FILE" 2>&1
+    code --install-extension wix.vscode-import-cost >> "$LOG_FILE" 2>&1
+    code --install-extension Zignd.html-css-class-completion >> "$LOG_FILE" 2>&1
+    end_step "Install VSCode extensions"
+}
+
 # Install packages not supported by Homebrew
 install_non_brew_packages() {
     begin_step "Install non-Brew packages"
@@ -222,6 +256,7 @@ setup_local_env() {
     install_brew
     install_brew_packages
     install_brew_cask_packages
+    install_vscode_extensions
     install_non_brew_packages
     install_macos_fonts
     prompt_git_config
