@@ -3,7 +3,7 @@
 set -e
 
 LOG_FILE="/tmp/dotfiles-install.log"
-TOTAL_STEPS=12
+TOTAL_STEPS=13
 CURRENT_STEP=0
 
 # ==============================================================
@@ -137,7 +137,7 @@ install_brew_packages() {
         go \
         graphviz \
         terraform \
-        nvm \
+        fnm \
         neofetch \
         kubernetes-cli \
         minikube \
@@ -240,6 +240,26 @@ set_hostname() {
     end_step "Set hostname"
 }
 
+# ==============================================================
+#                       Runtime installations
+# ==============================================================
+
+# Install latest Node.js via fnm
+install_node() {
+    begin_step "Install Node.js (fnm)"
+
+    eval "$(fnm env)" >> "$LOG_FILE" 2>&1
+
+    fnm install --latest >> "$LOG_FILE" 2>&1
+    fnm default "$(fnm current)" >> "$LOG_FILE" 2>&1
+    
+    end_step "Install Node.js (fnm)"
+}
+
+# ==============================================================
+#                       MacOS configs
+# ==============================================================
+
 update_macos_defaults() {
     begin_step "Update macOS defaults"
     defaults write com.apple.finder ShowPathbar -bool true >> "$LOG_FILE" 2>&1
@@ -256,6 +276,7 @@ setup_local_env() {
     install_brew
     install_brew_packages
     install_brew_cask_packages
+    install_node
     install_vscode_extensions
     install_non_brew_packages
     install_macos_fonts
