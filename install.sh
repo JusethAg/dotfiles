@@ -158,6 +158,7 @@ install_brew_cask_packages() {
         claude-code \
         docker \
         jetbrains-toolbox \
+        ticktick \
         "logi-options+" >> "$LOG_FILE" 2>&1
 
     end_step "Install Brew Cask packages"
